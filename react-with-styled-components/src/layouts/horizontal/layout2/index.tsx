@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { lighten, rgba } from "polished";
 import ToolTip from "../../../components/tooltip";
 import { useLocation } from "react-router-dom";
@@ -75,7 +75,7 @@ const Nav = styled.div`
       position: absolute;
       top: 100%;
       width: 12em;
-      transform: translateY(-6px) rotateX(180deg);
+      transform: translateY(-0.6em) rotateX(180deg);
       transition: left 0.5s ease;
     }
   }
@@ -230,7 +230,7 @@ const Layout = (props: Props) => {
   const location = useLocation();
   return (
     <div
-      className=" h-screen "
+      className=" h-screen"
       style={{
         backgroundColor: lighten(
           0.15,
@@ -238,6 +238,8 @@ const Layout = (props: Props) => {
             "#bebbbb"
         ),
         transition: "background-color 0.75s ease",
+        padding: "7em 2em 2em 2em",
+        overflowY: "auto",
       }}
     >
       <Nav>
@@ -265,7 +267,7 @@ const Layout = (props: Props) => {
           {routes.map((route, index) => (
             <ToolTip
               style={{
-                backgroundColor: rgba(route.color, 0.5),
+                backgroundColor: rgba(route.color || "#0000007f", 0.5),
               }}
               key={index}
               tooltip={route.name}
@@ -299,6 +301,15 @@ const Layout = (props: Props) => {
           ))}
         </div>
       </Nav>
+      <div
+        style={{
+          fontSize: "1.5em",
+          fontWeight: "bold",
+        }}
+        className=" h-full"
+      >
+        {props.children}
+      </div>
     </div>
   );
 };

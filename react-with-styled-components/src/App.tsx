@@ -33,7 +33,12 @@ const defaultRoutes = [
 ];
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App "
+      style={{
+        fontFamily: "sans-serif",
+      }}
+    >
       <Layout routes={routes}>
         <RouterView />
       </Layout>
