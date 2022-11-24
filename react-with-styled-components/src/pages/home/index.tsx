@@ -1,8 +1,8 @@
 import Button from "../../components/button";
-import Modal from "../../components/modal";
 import { useState } from "react";
+import useAffirm from "../../hooks/use-affirm";
 const HomePage = () => {
-  const [open, setOpen] = useState(false);
+  const [afirm, AffirmModal]  = useAffirm({});
   return (
     <div
       className="home-page"
@@ -10,41 +10,17 @@ const HomePage = () => {
         padding: "4em",
       }}
     >
+      <h1>Home Page</h1>
       <Button
         onClick={() => {
-          setOpen(true);
+          afirm(() => {
+            console.log("affirmed");
+          });
         }}
       >
-        open modal
+        Affirm
       </Button>
-      <h1>Menu</h1>
-      <h3
-        style={{
-          color: "#AA3535",
-        }}
-      >
-        Food & Drinks
-      </h3>
-      <Modal open={open}>
-        <div
-          style={{
-            padding: "2em",
-          }}
-        >
-          <h1>Modal</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            voluptates, quod, quia, voluptate quae voluptatem quibusdam
-          </p>
-          <Button
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            Close
-          </Button>
-        </div>
-      </Modal>
+      <AffirmModal />
     </div>
   );
 };

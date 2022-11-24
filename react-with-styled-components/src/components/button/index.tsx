@@ -117,7 +117,7 @@ const Button = ({ variant = "contained", rounded = "md", ...props }: Props) => {
         ...props.style,
       }}
     >
-      Button
+      {props.children || "Button"}
     </StyledButton>
   );
 };

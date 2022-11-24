@@ -30,8 +30,10 @@ const Nav = () => {
   );
 };
 
+type Mode = "light" | "dark";
+
 function App() {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState<Mode>("dark");
 
   return (
     <Provider value={[mode, setMode]}>

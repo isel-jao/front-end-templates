@@ -93,19 +93,28 @@ interface Props {
 }
 
 const Modal = ({
-  children,
-  open,
   style = {},
   className = "",
   transition = "fade-in",
+  ...props
 }: Props) => {
+  const [open, setOpen] = React.useState(props.open);
+
+  React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
   return (
-    <StyledModal className={`${open && "open"}`}>
+    <StyledModal
+      className={`${open && "open"}`}
+      onClick={() => {
+        setOpen(false);
+      }}
+    >
       <div
         style={style}
         className={`modal   ${className} ${open && transition}`}
       >
-        {children}
+        {props.children}
       </div>
     </StyledModal>
   );
