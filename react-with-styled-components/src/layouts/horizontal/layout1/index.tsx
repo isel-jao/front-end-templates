@@ -29,6 +29,9 @@ const StyleLayout = styled.div`
       background-color: ${({ theme }) =>
         theme.mode === "dark" ? rgba(0, 0, 0, 0.2) : rgba(255, 255, 255, 0.2)};
     }
+    &.custom {
+      background-color: #aa3535;
+    }
 
     .link {
       color: inherit;
@@ -50,7 +53,7 @@ StyleLayout.defaultProps = {
       color: "#caced8",
     },
     light: {
-      background: "#caced8",
+      background: "#F7F3E3",
       color: "#202124",
     },
     palette: {
@@ -87,7 +90,7 @@ const RouterLink = ({ route }: { route: Route }) => {
 const Layout = ({ children, routes }: Props) => {
   return (
     <StyleLayout>
-      <nav className="nav blur">
+      <nav className="nav custom">
         {routes.map((route) => (
           <RouterLink key={route.path} route={route} />
         ))}

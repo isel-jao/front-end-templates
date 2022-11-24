@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 const Nav = styled.div`
   position: fixed;
+  font-size: 10px;
   top: 1em;
   left: 50%;
   transform: translateX(-50%);
@@ -75,7 +76,7 @@ const Nav = styled.div`
       position: absolute;
       top: 100%;
       width: 12em;
-      transform: translateY(-0.6em) rotateX(180deg);
+      transform: translateY(-1.2em) rotateX(180deg);
       transition: left 0.5s ease;
     }
   }
