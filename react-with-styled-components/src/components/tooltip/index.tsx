@@ -17,12 +17,12 @@ const StyledToolTip = styled.div`
     transition-duration: 0.3s;
     transition-timing-function: ease;
     transition-property: opacity, bottom;
+    color: white;
   }
   &:hover {
     .tool-tip {
       bottom: -1em;
       opacity: 1;
-      color: white;
     }
   }
 `;

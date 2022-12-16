@@ -9,6 +9,7 @@ const StyledButton = styled.button`
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
   }
+  white-space: nowrap;
   border: none;
   cursor: pointer;
   padding: 0.5em 1em;

@@ -10,7 +10,7 @@ interface Props {
 function useAffirm({
   title = "Are you sure?",
   message = "This action cannot be undone",
-}: Props): [(callback: () => void) => void] {
+}: Props): [(callback: () => void) => void, () => JSX.Element] {
   const [open, setOpen] = useState(false);
   const [onAffirm, setOnAffirm] = useState<() => void>(() => () => {});
 
@@ -42,7 +42,7 @@ function useAffirm({
             padding: "2em",
             display: "flex",
             flexDirection: "column",
-            gap: "1em", 
+            gap: "1em",
           }}
         >
           <h1>{title}</h1>

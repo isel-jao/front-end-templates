@@ -1,8 +1,9 @@
 import { routes } from "./route";
 import RouterView from "./components/router-view";
 import "./styles/index.scss";
-import Layout from "./layouts/horizontal/layout1";
-
+import Layout from "./layouts/vertical/layout1";
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "styled-components";
 const defaultRoutes = [
   {
     name: "Home",
@@ -31,18 +32,41 @@ const defaultRoutes = [
     color: "#F54888",
   },
 ];
+
+const theme = {
+  mode: "light",
+  dark: {
+    background: "#202124",
+    color: "#caced8",
+  },
+  light: {
+    background: "#ffffff",
+    color: "#202124",
+  },
+  palette: {
+    primary: "#0da396",
+    secondary: "#D6E4E5",
+    error: "#E0144C",
+    warning: "#F5A623",
+    info: "#0D4C92",
+    success: "#00FFD1",
+  },
+};
 function App() {
   return (
-    <div
-      className="App "
-      style={{
-        fontFamily: "sans-serif",
-      }}
-    >
-      <Layout routes={routes}>
-        <RouterView />
-      </Layout>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div
+        className="App "
+        style={{
+          fontFamily: "sans-serif",
+        }}
+      >
+        <Layout routes={routes}>
+          <RouterView />
+        </Layout>
+        <ToastContainer />
+      </div>
+    </ThemeProvider>
   );
 }
 
