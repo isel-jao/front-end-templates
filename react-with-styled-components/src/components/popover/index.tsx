@@ -61,7 +61,7 @@ interface PopoverProps {
 }
 
 const Popover = (props: PopoverProps) => {
-  const firstChildRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const offset = props.offset || "0.5rem";
   const positionMap = {
@@ -89,8 +89,8 @@ const Popover = (props: PopoverProps) => {
   useEffect(() => {
     const closeEvent = (e: MouseEvent) => {
       if (
-        firstChildRef.current &&
-        !firstChildRef.current.contains(e.target as Node)
+        popoverRef.current &&
+        !popoverRef.current.contains(e.target as Node)
       ) {
         setOpen(false);
       }
@@ -102,12 +102,8 @@ const Popover = (props: PopoverProps) => {
     };
   }, []);
   return (
-    <StyledPopver className="">
-      <div
-        onClick={() => setOpen(!open)}
-        ref={firstChildRef}
-        className="element"
-      >
+    <StyledPopver className="" ref={popoverRef}>
+      <div onClick={() => setOpen(!open)} className="element">
         {props.children[0]}
       </div>
       <div
@@ -117,7 +113,7 @@ const Popover = (props: PopoverProps) => {
           padding: typeof props.children[1] === "string" ? "0.5rem" : "0",
           ...positionMap[props.position || "bottom"],
         }}
-        className={`popover ${open && props.position}`}
+        className={`popover ${open ? props.position || "bottom" : ""}`}
       >
         {props.children[1]}
       </div>

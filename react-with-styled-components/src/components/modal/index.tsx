@@ -14,7 +14,6 @@ const StyledModal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
   .modal {
-    background-color: #fff;
   }
   &.open {
     z-index: 999;
@@ -82,6 +81,7 @@ interface Props {
   open: boolean;
   style?: React.CSSProperties;
   className?: string;
+  onClose?: () => void;
   transition?:
     | "slide-up"
     | "slide-down"
@@ -92,27 +92,24 @@ interface Props {
     | "none";
 }
 
-const Modal = ({
-  style = {},
-  className = "",
-  transition = "fade-in",
-  ...props
-}: Props) => {
-  const [open, setOpen] = React.useState(props.open);
+const Modal = ({ transition = "fade-in", ...props }: Props) => {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const handleOutsideClick = (e: MouseEvent) => {
+    console.log(e.target);
 
-  React.useEffect(() => {
-    setOpen(props.open);
-  }, [props.open]);
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      props.onClose && props.onClose();
+    }
+  };
   return (
     <StyledModal
-      className={`${open && "open"}`}
-      onClick={() => {
-        setOpen(false);
-      }}
+      className={`${props.open && "open"}`}
+      onClick={handleOutsideClick}
     >
       <div
-        style={style}
-        className={`modal   ${className} ${open && transition}`}
+        ref={modalRef}
+        style={props.style}
+        className={`modal ${props.className} ${props.open && transition}`}
       >
         {props.children}
       </div>

@@ -6,7 +6,7 @@ import Modal from "../../components/modal";
 
 const HomePage = () => {
   const [afirm, AffirmModal] = useAffirm({});
-  const [progres, setProgres] = useState(0.2);
+  const [open, setOpen] = useState(false);
   return (
     <div
       className="home-page"
@@ -14,16 +14,31 @@ const HomePage = () => {
         padding: "4em",
       }}
     >
-      <Popover position="top" offset="0rem">
-        <Button
-          style={{
-            width: "100px",
-          }}
-        >
-          click me
-        </Button>
-        <div className="p-4 debug">test</div>
-      </Popover>
+      <div className="flex gap-4">
+        <span>open</span>
+        <span>{JSON.stringify(open)}</span>
+      </div>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        open modal
+      </Button>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+        className="bg-slate-50 text-slate-500 text-4xl  rounded p-4"
+        style={{
+          minWidth: "20rem",
+          minHeight: "15rem",
+        }}
+      >
+        test
+      </Modal>
     </div>
   );
 };
