@@ -9,6 +9,7 @@ const StyledProgressBar = styled.div`
     props.theme.mode === "light"
       ? darken(0.1, props.theme.light.background)
       : lighten(0.1, props.theme.dark.background)};
+  overflow: hidden;
   .text-primary {
     color: ${(props) => props.theme.palette.primary};
   }
@@ -56,6 +57,8 @@ interface Props {
   title?: string | number | React.ReactNode;
   children?: React.ReactNode;
   radius?: string;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const ProgressBar = (props: Props) => {
@@ -88,8 +91,9 @@ const ProgressBar = (props: Props) => {
         height: props.height || "2em",
         borderRadius: redius,
         position: "relative",
+        ...props.style,
       }}
-      className="bg-background"
+      className={props.className}
     >
       <span
         className="text-primary"
